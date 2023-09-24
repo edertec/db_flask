@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="my-4">Cadastrar Produto</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="produto">Nome do Produto</label>
+                <input type="text" class="form-control" id="produto" name="produto" required>
+            </div>
+            <div class="form-group">
+                <label for="preco">Preço</label>
+                <input type="number" class="form-control" id="preco" name="preco" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="unidade">Unidade</label>
+                <input type="text" class="form-control" id="unidade" name="unidade" required>
+            </div>
+            <div class="form-group">
+                <label for="descricao">Descrição</label>
+                <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="fabricante">Fabricante</label>
+                <input type="text" class="form-control" id="fabricante" name="fabricante" required>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="situacao" name="situacao">
+                <label class="form-check-label" for="situacao">Ativo</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+    </div>
+{% endblock %}

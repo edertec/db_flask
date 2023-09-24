@@ -1,0 +1,4 @@
+Flask==2.3.3  # ou a versão que você decidiu usar
+Flask-SQLAlchemy==2.5.1  # ou a versão que você decidiu usar
+gunicorn==20.1.0  # Opcional, para implantação em servidores
+dash==2.13.0  # ou a versão mais recente que você decidiu usar
