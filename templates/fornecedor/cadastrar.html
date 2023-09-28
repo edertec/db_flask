@@ -6,22 +6,22 @@
         <form method="POST">
             <div class="form-group">
                 <label for="fornecedor">Nome do Fornecedor</label>
-                <input type="text" class="form-control" id="fornecedor" name="fornecedor" required>
+                <input type="text" class="form-control" id="fornecedor" name="fornecedor" value="{{ form_data['fornecedor'] }}" required>
             </div>
             <div class="form-group">
                 <label for="telefone">Telefone</label>
-                <input type="text" class="form-control" id="telefone" name="telefone" required>
+                <input type="text" class="form-control" id="telefone" name="telefone" value="{{ form_data['telefone'] }}" required>
             </div>
             <div class="form-group">
                 <label for="endereco">Endereço</label>
-                <input type="text" class="form-control" id="endereco" name="endereco" required>
+                <input type="text" class="form-control" id="endereco" name="endereco" value="{{ form_data['endereco'] }}" required>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <input type="email" class="form-control" id="email" name="email" value="{{ form_data['email'] }}" required>
             </div>
             <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="situacao" name="situacao">
+                <input type="checkbox" class="form-check-input" id="situacao" name="situacao" value="{{ form_data['situacao'] }}">
                 <label class="form-check-label" for="situacao">Ativo</label>
             </div>
             <button type="submit" class="btn btn-primary">Cadastrar</button>

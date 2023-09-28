@@ -31,13 +31,15 @@ def cadastrar_fornecedor():
 @fornecedor_blueprint.route('/fornecedores/editar/<int:codigo>', methods=['GET', 'POST'])
 def editar_fornecedor(codigo):
     fornecedor = Fornecedor.query.get(codigo)
+    if request.method == 'GET':
+        return carregar_tela(codigo)  
     if request.method == 'POST':
         fornecedor.fornecedor = request.form['fornecedor']
         fornecedor.telefone = request.form['telefone']
         fornecedor.endereco = request.form['endereco']
         fornecedor.situacao = bool(request.form.get('situacao'))
         fornecedor.email = request.form['email']
-        db.commit()
+        db.session.commit()
         flash('Fornecedor atualizado com sucesso!', 'success')
         return redirect(url_for('fornecedor.listar_fornecedores'))
     return render_template('fornecedor/editar.html', fornecedor=fornecedor)
@@ -46,7 +48,19 @@ def editar_fornecedor(codigo):
 @fornecedor_blueprint.route('/fornecedores/excluir/<int:codigo>', methods=['GET'])
 def excluir_fornecedor(codigo):
     fornecedor = Fornecedor.query.get(codigo)
-    db.delete(fornecedor)
-    db.commit()
+    db.session.delete(fornecedor)
+    db.session.commit()
     flash('Fornecedor excluído com sucesso!', 'success')
     return redirect(url_for('fornecedor.listar_fornecedores'))
+
+
+def carregar_tela(codigo):
+    fornecedor = Fornecedor.query.get(codigo)
+    form_data = {
+        'fornecedor': fornecedor.fornecedor,
+        'telefone': fornecedor.telefone,
+        'endereco': fornecedor.endereco,
+        'situacao': fornecedor.situacao,
+        'email': fornecedor.email
+    }
+    return render_template('fornecedor/cadastrar.html', form_data=form_data)
