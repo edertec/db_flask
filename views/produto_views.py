@@ -13,6 +13,14 @@ def listar_produtos():
 # Cadastrar novo produto
 @produto_blueprint.route('/produtos/cadastrar', methods=['GET', 'POST'])
 def cadastrar_produto():
+    form_data = {
+        'produto': '',
+        'preco': '',
+        'unidade': '',
+        'situacao': '',
+        'descricao': '',
+        'fabricante': ''
+    }
     if request.method == 'POST':
         produto = Produto(
             produto=request.form['produto'],
@@ -26,7 +34,7 @@ def cadastrar_produto():
         db.session.commit()
         flash('Produto cadastrado com sucesso!', 'success')
         return redirect(url_for('produto.listar_produtos'))
-    return render_template('produto/cadastrar.html')
+    return render_template('produto/cadastrar.html', form_data=form_data)
 
 # Atualizar produto
 @produto_blueprint.route('/produtos/editar/<int:codigo>', methods=['GET', 'POST'])
@@ -43,7 +51,7 @@ def editar_produto(codigo):
         produto.fabricante = request.form['fabricante']
         db.session.commit()
         flash('Produto atualizado com sucesso!', 'success')
-        return redirect(url_for('produto.listar_produtos'))
+    return redirect(url_for('produto.listar_produtos'))
 
 # Excluir produto
 @produto_blueprint.route('/produtos/excluir/<int:codigo>', methods=['GET'])

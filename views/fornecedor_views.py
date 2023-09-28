@@ -32,7 +32,8 @@ def cadastrar_fornecedor():
 def editar_fornecedor(codigo):
     fornecedor = Fornecedor.query.get(codigo)
     if request.method == 'GET':
-        return carregar_tela(codigo)  
+        form_data = carregar_tela(codigo)
+        return render_template('fornecedor/editar.html', fornecedor=fornecedor, form_data=form_data)
     if request.method == 'POST':
         fornecedor.fornecedor = request.form['fornecedor']
         fornecedor.telefone = request.form['telefone']
